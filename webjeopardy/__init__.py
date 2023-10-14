@@ -4,8 +4,8 @@ import random
 
 app = Flask(__name__)
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
+@app.route('/jeopardy/')
+@app.route('/jeopardy/<name>')
 def hello(name=None):
     question = "tests"
 
