@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<style>
+body {
+    background-color: rgb(202, 124, 233);
+}
+
+table {
+  table-layout: fixed;
+  width: 96%;
+}
+
+@keyframes movement {
+    0% {
+
+    }
+    100% {
+        bottom: 20%;
+    }
+}
+
+@keyframes example {
+  0%   {
+    width: 0%;
+    height: 0%;
+    font-size: 0%;
+    padding-top: 0%;
+  }
+  100% {
+    width: 100%;
+    height:100%;
+    font-size: 52px;
+    padding-top: 20%;
+  }
+}
+
+@keyframes answerappeared {
+  0%   {
+    opacity: 0%;
+  }
+  100% {
+    text-align: center;
+    opacity: 100%;
+  }
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding-top: 20%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 52px;
+    animation-name: example;
+    animation-duration: 0.8s;
+    transition-duration: 0.4s;
+    z-index: 9;
+    background: #a028cf;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.appear {
+    transition-duration: 0.4s;
+    animation-name: answerappeared;
+    animation-duration: 0.8s;
+}
+
+h1 {
+    font-family: 'Anton', sans-serif;
+    color: rgb(133, 36, 133);
+    text-align: center;
+    font-size: 72px;
+}
+
+.jbutton {
+    background-color: #a028cf;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 52px;
+    transition-duration: 0.4s;
+    width: 19%;
+    height: 19%;
+}
+
+.jbutton:hover {
+  background-color: #6a1672;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  color: white;
+}
+
+.C {
+    font-size: 34px;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    color: rgb(255, 247, 255);
+}
+
+</style>
+</head>
+<body>
+<title>Jeopardy!</title>
+<h1>Jeopardy</h1>
+<table>
+    <tr class="C">
+        {% for n in range(5) %}
+            <td><b>{{ answers[n][0]["category"]["title"].upper() }}</b></td>
+        {% endfor %} 
+    </tr>
+</table>
+<br>
+{% for num in range(5) %}
+    {% for item in range(5) %}
+        <div id="C{{ item }},{{ num }}" class="box" style="display: none;" onclick="hiddenBox(this.id)">
+            <div>{{ answers[item][num]["question"] }}</div>
+            <div id="DC{{ item }},{{ num }}" class="appear" style="display: none;">
+                ==================================<br>
+                {{ answers[item][num]["answer"] }}
+            </div>
+        </div>
+        <button id="{{ item }},{{ num }}" class="jbutton" type="button" onclick="question(this.id)">{{ num * 200 + 200 }}</button>
+    {% endfor %}
+    <br>
+{% endfor %}
+<script>
+    function question(id) {
+        var y = document.getElementById(id);
+        var x = document.getElementById("C" + id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.classList.add("disabled");
+        } else {
+            x.style.display = "none";
+            x.remove();
+        }
+    }
+    function hiddenBox(id) {
+        var x = document.getElementById(id);
+        var v = document.getElementById("D" + id)
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } 
+        else if (v.style.display === "none") {
+            v.style.display = "block";
+        }
+        else {
+            v.style.display = "none";
+            v.remove();
+            x.style.display = "none";
+            x.remove();
+        }
+    }
+
+</script>
+</body>
+</html>
