@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import filmtrumps.jeopardy as jeopardy
+import webjeopardy.jeopardy as jeopardy
 import random
 
 app = Flask(__name__)
