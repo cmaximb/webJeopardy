@@ -2,7 +2,6 @@ import html2text
 import requests
 
 parser = html2text.HTML2Text()
-parser.emphasis_mark = "http://avon.cs.nott.ac.uk/~psycb9/dbiexample/Homepage.html"
 
 def ask_question(jeopc):
     categories = []
