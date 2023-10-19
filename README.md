@@ -25,7 +25,7 @@ To run, simply run the following command in the command line (with *--host=0.0.0
 
 
 ```
- flask --app .\webjeopardy\**init**.py run *--host=0.0.0.0*
+ flask --app .\webjeopardy\__init__.py run --host=0.0.0.0
 ```
 
 Then, go to your favourite browser and go to the link http://127.0.0.1:5000/jeopardy/. Refreshing the page will update the grid with new, updated categories. Click on the boxes to answer questions.
